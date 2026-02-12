@@ -1,0 +1,4 @@
+{"timestamp": "2026-02-12 18:53:52", "action": "login", "user": "test@stb.tn", "ip_address": "127.0.0.1", "details": {"success": true}}
+{"timestamp": "2026-02-12 18:53:52", "action": "ask_question", "user": "test@stb.tn", "ip_address": "unknown", "details": {"question": "Ma question ?", "confidence": 85.5}}
+{"timestamp": "2026-02-12 18:56:10", "action": "login", "user": "test@stb.tn", "ip_address": "127.0.0.1", "details": {"success": true}}
+{"timestamp": "2026-02-12 18:56:10", "action": "ask_question", "user": "test@stb.tn", "ip_address": "unknown", "details": {"question": "Ma question ?", "confidence": 85.5}}

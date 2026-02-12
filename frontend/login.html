@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STB Copilot - Connexion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <!-- Background decoration -->
+        <div class="background-decoration"></div>
+
+        <!-- Login card -->
+        <div class="login-card">
+            <!-- Logo and header -->
+            <div class="login-header">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="logo-icon">
+                    <rect width="48" height="48" rx="12" fill="url(#gradient)" />
+                    <path d="M24 12L33 18V30L24 36L15 30V18L24 12Z" stroke="white" stroke-width="3"
+                        stroke-linejoin="round" />
+                    <defs>
+                        <linearGradient id="gradient" x1="0" y1="0" x2="48" y2="48">
+                            <stop offset="0%" stop-color="#1e3a8a" />
+                            <stop offset="100%" stop-color="#06b6d4" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <h1>STB Copilot</h1>
+                <p class="subtitle">Assistant Intelligent Bancaire</p>
+            </div>
+
+            <!-- Security badge -->
+            <div class="security-badge">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M8 1L14 3V7C14 10.5 11.5 13.5 8 15C4.5 13.5 2 10.5 2 7V3L8 1Z" stroke="currentColor"
+                        stroke-width="1.5" stroke-linejoin="round" />
+                    <path d="M6 8L7.5 9.5L10 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <span>Accès réservé au personnel STB</span>
+            </div>
+
+            <!-- Login form -->
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="votre.email@stb.tn" required
+                        autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required
+                        autocomplete="current-password">
+                </div>
+
+                <!-- Error message -->
+                <div class="error-message" id="errorMessage"></div>
+
+                <!-- Submit button -->
+                <button type="submit" class="login-button" id="loginButton">
+                    <span class="button-text">Se connecter</span>
+                    <svg class="button-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 4L16 10L10 16M16 10H4" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </form>
+
+            <!-- Demo credentials -->
+            <div class="demo-credentials">
+                <p class="demo-title">Comptes de démonstration:</p>
+                <div class="demo-accounts">
+                    <div class="demo-account">
+                        <strong>Agent:</strong> agent@stb.tn / agent123
+                    </div>
+                    <div class="demo-account">
+                        <strong>Admin:</strong> admin@stb.tn / admin123
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="login-footer">
+            <p>© 2026 Société Tunisienne de Banque - Tous droits réservés</p>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+
+</html>
