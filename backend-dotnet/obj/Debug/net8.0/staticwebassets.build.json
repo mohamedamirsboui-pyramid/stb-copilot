@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "4kc9JG+8RHclmQHyriDHJBHU2hKzIulpkPziHAgJNck=",
+  "Source": "StbCopilot.Api",
+  "BasePath": "_content/StbCopilot.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

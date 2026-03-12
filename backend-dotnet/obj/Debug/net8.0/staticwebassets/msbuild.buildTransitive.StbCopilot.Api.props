@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/StbCopilot.Api.props" />
+</Project>
