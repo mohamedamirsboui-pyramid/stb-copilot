@@ -1,0 +1,160 @@
+<!-- ╔══════════════════════════════════════════════════════════╗ -->
+<!-- ║  admin.component.html — Admin Panel UI                  ║ -->
+<!-- ║                                                          ║ -->
+<!-- ║  Layout:                                                 ║ -->
+<!-- ║  - Top navbar (same style as chat)                       ║ -->
+<!-- ║  - Title + Upload button + Search bar                    ║ -->
+<!-- ║  - Documents table with status badges                    ║ -->
+<!-- ║  - Pagination at the bottom                              ║ -->
+<!-- ║  - Upload modal overlay                                  ║ -->
+<!-- ╚══════════════════════════════════════════════════════════╝ -->
+
+<div class="admin-layout">
+
+    <!-- ═══ TOP NAVBAR ═══ -->
+    <header class="navbar">
+        <div class="nav-left">
+            <div class="nav-logo">
+                <span class="logo-mark">STB</span>
+                <span class="logo-text">Copilot</span>
+                <span class="admin-tag">Admin</span>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="nav-btn" (click)="goToChat()">💬 Chat</button>
+            <span class="user-name">{{ userName }}</span>
+            <button class="logout-btn" (click)="logout()">Déconnexion</button>
+        </div>
+    </header>
+
+    <!-- ═══ MAIN CONTENT ═══ -->
+    <main class="admin-content">
+
+        <!-- Title + Actions Row -->
+        <div class="content-header">
+            <h1>Gestion des Documents Internes</h1>
+            <div class="header-actions">
+                <button class="upload-btn" (click)="showUploadModal = true">
+                    📤 Télécharger un document
+                </button>
+                <div class="search-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" [(ngModel)]="searchText" (ngModelChange)="filterDocuments()"
+                        placeholder="Rechercher un document..." class="search-input" />
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ DOCUMENTS TABLE ═══ -->
+        <div class="table-container">
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th>Nom du document</th>
+                        <th>Catégorie</th>
+                        <th>Version</th>
+                        <th>Statut</th>
+                        <th>Date d'ajout</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Show documents for current page -->
+                    <tr *ngFor="let doc of getPagedDocuments()">
+                        <td class="doc-name">
+                            <span class="doc-icon">📄</span>
+                            {{ doc.fileName }}
+                        </td>
+                        <td>
+                            <span class="category-badge">{{ doc.category }}</span>
+                        </td>
+                        <td>{{ doc.version }}</td>
+                        <td>
+                            <span class="status-badge" [class.active-status]="doc.status === 'Active'"
+                                [class.archived-status]="doc.status === 'Archivé'">
+                                {{ doc.status }}
+                            </span>
+                        </td>
+                        <td>{{ doc.uploadedAt | date:'dd/MM/yyyy' }}</td>
+                        <td>
+                            <button class="action-btn view-btn" title="Voir">👁️</button>
+                            <button class="action-btn delete-btn" (click)="deleteDocument(doc)"
+                                title="Supprimer">🗑️</button>
+                        </td>
+                    </tr>
+
+                    <!-- Empty state -->
+                    <tr *ngIf="filteredDocuments.length === 0">
+                        <td colspan="6" class="empty-state">
+                            <div class="empty-icon">📂</div>
+                            <p>Aucun document trouvé</p>
+                            <p class="empty-hint">Cliquez "Télécharger un document" pour commencer</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ═══ PAGINATION ═══ -->
+        <div class="pagination" *ngIf="totalPages > 1">
+            <button class="page-btn" [disabled]="currentPage === 1" (click)="currentPage = currentPage - 1">
+                ← Précédent
+            </button>
+            <span class="page-info">
+                Page {{ currentPage }} sur {{ totalPages }}
+            </span>
+            <button class="page-btn" [disabled]="currentPage === totalPages" (click)="currentPage = currentPage + 1">
+                Suivant →
+            </button>
+        </div>
+
+    </main>
+
+    <!-- ═══ UPLOAD MODAL ═══ -->
+    <div class="modal-overlay" *ngIf="showUploadModal" (click)="showUploadModal = false">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+            <div class="modal-header">
+                <h2>Télécharger un document</h2>
+                <button class="close-btn" (click)="showUploadModal = false">✕</button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Category Selection -->
+                <div class="form-group">
+                    <label>Catégorie</label>
+                    <select [(ngModel)]="uploadCategory" class="form-select">
+                        <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+                    </select>
+                </div>
+
+                <!-- File Drop Zone -->
+                <div class="drop-zone" (click)="fileInput.click()">
+                    <input type="file" #fileInput accept=".pdf" (change)="onFileSelected($event)"
+                        style="display: none" />
+                    <div class="drop-content">
+                        <span class="drop-icon">📁</span>
+                        <p *ngIf="!selectedFile">
+                            Cliquez ou glissez un fichier PDF ici
+                        </p>
+                        <p *ngIf="selectedFile" class="selected-file">
+                            📄 {{ selectedFile.name }}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Upload Message -->
+                <div class="upload-message" *ngIf="uploadMessage" [class.success]="uploadMessage.includes('succès')"
+                    [class.error]="!uploadMessage.includes('succès')">
+                    {{ uploadMessage }}
+                </div>
+
+                <!-- Upload Button -->
+                <button class="upload-submit-btn" (click)="uploadDocument()" [disabled]="isUploading || !selectedFile">
+                    <span *ngIf="!isUploading">📤 Télécharger</span>
+                    <span *ngIf="isUploading">⏳ Traitement en cours...</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

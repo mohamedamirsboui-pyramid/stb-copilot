@@ -1,0 +1,75 @@
+<!-- ╔══════════════════════════════════════════════════════════╗ -->
+<!-- ║  login.component.html — The login page UI               ║ -->
+<!-- ║                                                          ║ -->
+<!-- ║  Design: STB Bank corporate login page                   ║ -->
+<!-- ║  - Blue/white gradient background                        ║ -->
+<!-- ║  - STB logo at top                                       ║ -->
+<!-- ║  - White centered card with login form                   ║ -->
+<!-- ║  - Professional banking appearance                       ║ -->
+<!-- ╚══════════════════════════════════════════════════════════╝ -->
+
+<div class="login-page">
+
+    <!-- ═══ LOGIN CARD ═══ -->
+    <div class="login-card">
+
+        <!-- STB Logo and Title -->
+        <div class="login-header">
+            <!-- Real STB Bank logo -->
+            <div class="stb-logo">
+                <img src="stb-logo.png" alt="STB Bank Logo" class="logo-img" />
+            </div>
+            <h1 class="app-title">STB Copilot</h1>
+            <p class="app-subtitle">Assistant Intelligent Bancaire</p>
+        </div>
+
+        <!-- Security Badge -->
+        <div class="security-badge">
+            <span class="badge-icon">🔒</span>
+            <span>Accès réservé au personnel STB</span>
+        </div>
+
+        <!-- Login Form -->
+        <form (ngSubmit)="onLogin()" class="login-form">
+
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Adresse email</label>
+                <div class="input-wrapper">
+                    <span class="input-icon">📧</span>
+                    <input type="email" id="email" [(ngModel)]="email" name="email" placeholder="votrenom@stb.tn"
+                        required [disabled]="isLoading" />
+                </div>
+            </div>
+
+            <!-- Password Field -->
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <div class="input-wrapper">
+                    <span class="input-icon">🔑</span>
+                    <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="••••••••"
+                        required [disabled]="isLoading" />
+                </div>
+            </div>
+
+            <!-- Error Message -->
+            <div class="error-message" *ngIf="errorMessage">
+                <span>⚠️</span> {{ errorMessage }}
+            </div>
+
+            <!-- Login Button -->
+            <button type="submit" class="login-button" [disabled]="isLoading">
+                <span *ngIf="!isLoading">Se connecter</span>
+                <span *ngIf="isLoading" class="spinner"></span>
+                <span *ngIf="isLoading"> Connexion en cours...</span>
+            </button>
+
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <div class="login-footer">
+        © 2026 STB - Confidentiel
+    </div>
+
+</div>

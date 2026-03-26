@@ -1,0 +1,159 @@
+<!-- ╔══════════════════════════════════════════════════════════╗ -->
+<!-- ║  chat.component.html — The chat dashboard UI            ║ -->
+<!-- ║                                                          ║ -->
+<!-- ║  Layout:                                                 ║ -->
+<!-- ║  ┌─────────┬────────────────────────────────┐            ║ -->
+<!-- ║  │ NAVBAR  │         NAVBAR                 │            ║ -->
+<!-- ║  ├─────────┼────────────────────────────────┤            ║ -->
+<!-- ║  │         │                                │            ║ -->
+<!-- ║  │ SIDEBAR │      CHAT MESSAGES             │            ║ -->
+<!-- ║  │         │                                │            ║ -->
+<!-- ║  │ History │      ┌──────────────┐          │            ║ -->
+<!-- ║  │         │      │ Input + Send │          │            ║ -->
+<!-- ║  └─────────┴──────┴──────────────┴──────────┘            ║ -->
+<!-- ╚══════════════════════════════════════════════════════════╝ -->
+
+<div class="chat-layout">
+
+    <!-- ═══ TOP NAVBAR ═══ -->
+    <header class="navbar">
+        <div class="nav-left">
+            <button class="menu-btn" (click)="toggleSidebar()">☰</button>
+            <div class="nav-logo">
+                <span class="logo-mark">STB</span>
+                <span class="logo-text">Copilot</span>
+            </div>
+        </div>
+        <div class="nav-right">
+            <div class="user-info">
+                <span class="user-name">{{ userName }}</span>
+                <span class="role-badge" [class.admin-badge]="userRole === 'Admin'">
+                    {{ userRole }}
+                </span>
+            </div>
+            <button class="logout-btn" (click)="logout()">Déconnexion</button>
+        </div>
+    </header>
+
+    <div class="main-content">
+
+        <!-- ═══ LEFT SIDEBAR — Conversation History ═══ -->
+        <aside class="sidebar" [class.sidebar-open]="sidebarOpen">
+
+            <!-- New Conversation Button -->
+            <button class="new-conv-btn" (click)="newConversation()">
+                <span>＋</span> Nouvelle conversation
+            </button>
+
+            <!-- Conversation Groups (Today, Yesterday, This Week) -->
+            <div class="conv-groups">
+                <div *ngFor="let group of getConversationsByDate()" class="conv-group">
+                    <div class="group-label">{{ group.label }}</div>
+                    <div *ngFor="let conv of group.conversations" class="conv-item"
+                        [class.active]="activeConversation?.id === conv.id" (click)="openConversation(conv)">
+                        <span class="conv-icon">💬</span>
+                        <span class="conv-title">{{ conv.title }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Link (only visible for admins) -->
+            <div class="sidebar-footer" *ngIf="userRole === 'Admin'">
+                <a routerLink="/admin" class="admin-link">⚙️ Panneau Admin</a>
+            </div>
+        </aside>
+
+        <!-- ═══ MAIN CHAT AREA ═══ -->
+        <main class="chat-area">
+
+            <!-- Welcome Message (shown when no conversation is active) -->
+            <div class="welcome" *ngIf="!activeConversation">
+                <div class="welcome-icon">🏦</div>
+                <h2>Bienvenue sur STB Copilot</h2>
+                <p>Posez vos questions sur les procédures bancaires internes.</p>
+                <div class="example-questions">
+                    <p class="example-label">Exemples de questions :</p>
+                    <button class="example-btn"
+                        (click)="currentQuestion = 'Comment ouvrir un compte bancaire?'; sendQuestion()">
+                        Comment ouvrir un compte bancaire?
+                    </button>
+                    <button class="example-btn"
+                        (click)="currentQuestion = 'Quelle est la procédure de virement international?'; sendQuestion()">
+                        Quelle est la procédure de virement international?
+                    </button>
+                    <button class="example-btn"
+                        (click)="currentQuestion = 'Comment traiter une réclamation client?'; sendQuestion()">
+                        Comment traiter une réclamation client?
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chat Messages (shown when a conversation is active) -->
+            <div class="messages-container" *ngIf="activeConversation">
+                <div *ngFor="let msg of activeConversation.messages" class="message"
+                    [class.user-message]="msg.role === 'user'" [class.assistant-message]="msg.role === 'assistant'">
+                    <!-- Message Avatar -->
+                    <div class="message-avatar">
+                        <span *ngIf="msg.role === 'user'">👤</span>
+                        <span *ngIf="msg.role === 'assistant'">🤖</span>
+                    </div>
+
+                    <!-- Message Content -->
+                    <div class="message-content">
+                        <div class="message-header">
+                            <strong>{{ msg.role === 'user' ? userName : 'STB Copilot' }}</strong>
+                            <span class="message-time">
+                                {{ msg.timestamp | date:'HH:mm' }}
+                            </span>
+                        </div>
+
+                        <div class="message-text" [innerHTML]="msg.content"></div>
+
+                        <!-- Source info (only for assistant messages) -->
+                        <div class="message-source"
+                            *ngIf="msg.role === 'assistant' && msg.sourceDocument && msg.sourceDocument !== 'Aucun'">
+                            <div class="source-badge">
+                                <span>📄</span>
+                                Source: {{ msg.sourceDocument }}
+                            </div>
+                            <div class="confidence-badge" *ngIf="msg.confidence">
+                                Confiance: {{ (msg.confidence! * 100).toFixed(0) }}%
+                            </div>
+                        </div>
+
+                        <!-- Warning box for important notes -->
+                        <div class="warning-box" *ngIf="msg.role === 'assistant' && msg.content.includes('Important')">
+                            <span>⚠️</span>
+                            <span>Vérifiez toujours avec le document source officiel.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loading indicator -->
+                <div class="message assistant-message" *ngIf="isLoading">
+                    <div class="message-avatar"><span>🤖</span></div>
+                    <div class="message-content">
+                        <div class="typing-indicator">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══ INPUT AREA ═══ -->
+            <div class="input-area">
+                <div class="input-container">
+                    <input type="text" [(ngModel)]="currentQuestion"
+                        placeholder="Posez votre question sur les procédures STB..." (keyup.enter)="sendQuestion()"
+                        [disabled]="isLoading" class="chat-input" />
+                    <button class="send-btn" (click)="sendQuestion()" [disabled]="isLoading || !currentQuestion.trim()">
+                        Envoyer
+                    </button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>

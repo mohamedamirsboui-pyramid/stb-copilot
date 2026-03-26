@@ -1,0 +1,50 @@
+/* ╔══════════════════════════════════════════════════════════╗ */
+/* ║  styles.css — Global styles for the entire app           ║ */
+/* ║                                                          ║ */
+/* ║  These styles apply to ALL pages.                        ║ */
+/* ║  Page-specific styles are in each component's .css file. ║ */
+/* ╚══════════════════════════════════════════════════════════╝ */
+
+/* ═══ CSS RESET ═══ */
+/* Remove browser default spacing so all browsers look the same. */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ═══ BASE STYLES ═══ */
+html,
+body {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f7fb;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ═══ SCROLLBAR STYLING ═══ */
+/* Makes scrollbars look clean and modern. */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+/* ═══ SELECTION COLOR ═══ */
+/* When the user selects text, use STB blue. */
+::selection {
+    background: #0066cc;
+    color: white;
+}

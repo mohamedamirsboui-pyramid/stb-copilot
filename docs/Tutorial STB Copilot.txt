@@ -1,0 +1,46 @@
+Tutorial: STB Copilot - Beginner version
+Welcome! I have simplified this project so you can understand every part of it as you learn .NET and Angular.
+
+📁 Project Structure
+Here is how the project is organized now:
+
+Backend (.NET)
+Located in /backend folder. It has only 4 main files:
+
+Program.cs: The brain of the application. It starts the server and tells it how to behave.
+Controllers/CopilotController.cs: Like a waiter, it receives your question and sends back the answer.
+Services/CopilotService.cs: Like the kitchen, it reads the documents and "cooks" the answer.
+Models/: Simple classes that define the "shape" of the data (Question and Answer).
+Frontend (Angular)
+Located in /frontend folder. It has these key files:
+
+app.ts: The main gate of your app.
+copilot.component.ts: The logic for the chat UI (sending questions, showing answers).
+copilot.component.html: The physical look of the chat (input box, button).
+copilot.service.ts: The code that talks to the Backend over the internet.
+🔄 How the request flows
+You type a question in the copilot.component.html.
+Angular sends that question to the CopilotService.
+The Service sends a POST request to http://localhost:5000/api/ask.
+The .NET Backend receives it in CopilotController.
+The Controller asks CopilotService to find the answer in the text files.
+The Answer travels back to Angular and appears on your screen!
+🚀 How to run it (Step-by-Step)
+Step 1: Start the Backend
+Open a terminal.
+Go to the backend folder: cd backend
+Run the project: dotnet run
+Wait until you see: "Running on: http://localhost:5000"
+Step 2: Start the Frontend
+Open a second terminal.
+Go to the frontend folder: cd frontend
+Install parts if needed: npm install
+Start the app: npm start
+Wait until it says "Compiled successfully".
+Step 3: Test it!
+Open your browser to http://localhost:4200.
+Type: "What documents are required to open a professional account?"
+Press Enter and watch the answer appear!
+💡 Important Note
+I removed the Login and Database parts to make it easier for you to learn the basics first.
+Every file has lots of comments explaining what each line does. Read them carefully!

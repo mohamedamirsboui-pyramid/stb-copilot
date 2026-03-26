@@ -1,0 +1,121 @@
+╔════════════════════════════════════════════╗
+║  STB Copilot API is running!               ║
+║  URL: http://localhost:5000                 ║
+║  Login: POST /api/auth/login               ║
+║  Ask:   POST /api/copilot/ask              ║
+║  Docs:  POST /api/documents/upload         ║
+╚════════════════════════════════════════════╝
+info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[62]
+      User profile is available. Using '/home/pyramid/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[58]
+      Creating key {71ce87e8-a9f9-4b98-98d8-08f3c751d359} with creation date 2026-03-22 21:31:04Z, activation date 2026-03-22 21:31:04Z, and expiration date 2026-06-20 21:31:04Z.
+warn: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[35]
+      No XML encryptor configured. Key {71ce87e8-a9f9-4b98-98d8-08f3c751d359} may be persisted to storage in unencrypted form.
+info: Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository[39]
+      Writing data to file '/home/pyramid/.aspnet/DataProtection-Keys/key-71ce87e8-a9f9-4b98-98d8-08f3c751d359.xml'.
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5000
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /home/pyramid/stb-copilot/backend
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5000/api/auth/login - application/json 49
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'StbCopilot.Api.Controllers.AuthController.Login (StbCopilot.Api)'
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+      Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(StbCopilot.Api.Models.LoginRequest) on controller StbCopilot.Api.Controllers.AuthController (StbCopilot.Api).
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing OkObjectResult, writing value of type 'StbCopilot.Api.Models.LoginResponse'.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+      Executed action StbCopilot.Api.Controllers.AuthController.Login (StbCopilot.Api) in 228.4868ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'StbCopilot.Api.Controllers.AuthController.Login (StbCopilot.Api)'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost:5000/api/auth/login - 200 - application/json;+charset=utf-8 851.1153ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5000/api/auth/login - application/json 49
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'StbCopilot.Api.Controllers.AuthController.Login (StbCopilot.Api)'
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+      Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(StbCopilot.Api.Models.LoginRequest) on controller StbCopilot.Api.Controllers.AuthController (StbCopilot.Api).
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing OkObjectResult, writing value of type 'StbCopilot.Api.Models.LoginResponse'.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+      Executed action StbCopilot.Api.Controllers.AuthController.Login (StbCopilot.Api) in 5.5924ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'StbCopilot.Api.Controllers.AuthController.Login (StbCopilot.Api)'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost:5000/api/auth/login - 200 - application/json;+charset=utf-8 9.6123ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5000/api/copilot/ask - application/json 51
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'StbCopilot.Api.Controllers.CopilotController.Ask (StbCopilot.Api)'
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+      Route matched with {action = "Ask", controller = "Copilot"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Ask(StbCopilot.Api.Models.QuestionRequest) on controller StbCopilot.Api.Controllers.CopilotController (StbCopilot.Api).
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing OkObjectResult, writing value of type 'StbCopilot.Api.Models.AnswerResponse'.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+      Executed action StbCopilot.Api.Controllers.CopilotController.Ask (StbCopilot.Api) in 27.8033ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'StbCopilot.Api.Controllers.CopilotController.Ask (StbCopilot.Api)'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost:5000/api/copilot/ask - 200 - application/json;+charset=utf-8 168.5128ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5000/api/auth/login - application/json 49
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'StbCopilot.Api.Controllers.AuthController.Login (StbCopilot.Api)'
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+      Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(StbCopilot.Api.Models.LoginRequest) on controller StbCopilot.Api.Controllers.AuthController (StbCopilot.Api).
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing OkObjectResult, writing value of type 'StbCopilot.Api.Models.LoginResponse'.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+      Executed action StbCopilot.Api.Controllers.AuthController.Login (StbCopilot.Api) in 3.4666ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'StbCopilot.Api.Controllers.AuthController.Login (StbCopilot.Api)'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost:5000/api/auth/login - 200 - application/json;+charset=utf-8 4.1063ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5000/api/copilot/ask - application/json 51
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'StbCopilot.Api.Controllers.CopilotController.Ask (StbCopilot.Api)'
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+      Route matched with {action = "Ask", controller = "Copilot"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Ask(StbCopilot.Api.Models.QuestionRequest) on controller StbCopilot.Api.Controllers.CopilotController (StbCopilot.Api).
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing OkObjectResult, writing value of type 'StbCopilot.Api.Models.AnswerResponse'.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+      Executed action StbCopilot.Api.Controllers.CopilotController.Ask (StbCopilot.Api) in 1.0778ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'StbCopilot.Api.Controllers.CopilotController.Ask (StbCopilot.Api)'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost:5000/api/copilot/ask - 200 - application/json;+charset=utf-8 4.0748ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5000/api/auth/login - application/json 49
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'StbCopilot.Api.Controllers.AuthController.Login (StbCopilot.Api)'
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+      Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(StbCopilot.Api.Models.LoginRequest) on controller StbCopilot.Api.Controllers.AuthController (StbCopilot.Api).
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing OkObjectResult, writing value of type 'StbCopilot.Api.Models.LoginResponse'.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+      Executed action StbCopilot.Api.Controllers.AuthController.Login (StbCopilot.Api) in 3.6478ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'StbCopilot.Api.Controllers.AuthController.Login (StbCopilot.Api)'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost:5000/api/auth/login - 200 - application/json;+charset=utf-8 7.2110ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5000/api/documents - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'StbCopilot.Api.Controllers.DocumentController.GetAll (StbCopilot.Api)'
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[102]
+      Route matched with {action = "GetAll", controller = "Document"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAll() on controller StbCopilot.Api.Controllers.DocumentController (StbCopilot.Api).
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor[1]
+      Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[StbCopilot.Api.Models.Document, StbCopilot.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[105]
+      Executed action StbCopilot.Api.Controllers.DocumentController.GetAll (StbCopilot.Api) in 13.8851ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'StbCopilot.Api.Controllers.DocumentController.GetAll (StbCopilot.Api)'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5000/api/documents - 200 - application/json;+charset=utf-8 21.3237ms

@@ -1,0 +1,31 @@
+# .NET Core
+bin/
+obj/
+*.user
+*.userosscache
+*.sln.docuser
+.vs/
+.vscode/
+
+# Angular
+node_modules/
+dist/
+tmp/
+out-tsc/
+bazel-out/
+.angular/
+
+# Other
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*.bak
+
+# Environment variables
+.env
+.env.*
+! .env.example
+
+# Secrets (OPTIONAL: Keep appsettings.json if needed for prototype)
+# backend/appsettings.json
